@@ -1,7 +1,36 @@
-import string from './models/Search';
+import Search from './models/Search';
 
-import { add, a } from './views/SearchView';
+/*
+* GLOBAL STATE OBJECT
+ ! search object
+ ! - current recipe object
+ ! - shopping list object
+ ! - liked recipes 
+ */
+const state = {};
 
-let c = add(6, 7);
-console.log(c);
-console.log(string);
+const controlSearch = async () => {
+  //GETTING QUERY PARAMS FROM VIEW
+  const query = 'pizza';
+
+  if (query) {
+    //CREATING A NEW SEARCH OBJECT
+    state.search = new Search(query);
+  }
+
+  //PREPARE UI FOR RESULT
+
+  //SEARCH FOR RECIPES
+  //returning a promise
+  await state.search.getResults();
+
+  //RENDER RESULTS ON UI
+  console.log(state.search.recipesArray);
+};
+
+document.querySelector('.search').addEventListener('submit', e => {
+  e.preventDefault();
+  controlSearch();
+});
+
+//console.log(search);
