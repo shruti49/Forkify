@@ -13,7 +13,6 @@ export default class Search {
         `${proxy}/https://www.food2fork.com/api/search?key=${myKey}&q=${this.query}`
       );
         this.recipesArray = response.data.recipes;
-        console.log(response);
     } catch (error) {
       alert(error);
     }
